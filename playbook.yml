@@ -42,7 +42,7 @@
 
     - name: "Pip: Installing Docker Modules"
       include_role:
-        name: installpipi
+        name: installpip
       vars:
         pippackage: docker
 
