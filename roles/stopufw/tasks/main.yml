@@ -1,0 +1,6 @@
+---
+# tasks file for roles/stopufw
+- name: Stopping UFW
+  service:
+    name: ufw
+    state: stopped

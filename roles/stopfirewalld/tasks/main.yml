@@ -1,0 +1,6 @@
+---
+# tasks file for roles/stopfirewalld
+- name: Stopping firewalld
+  service:
+    name: firewalld
+    state: stopped
