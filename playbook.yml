@@ -1,5 +1,5 @@
 ---
-- name: Containerization 5.1 (WEBSERVER)
+- name: For webserver
   hosts: all
   tags: webserver
   tasks:
@@ -21,7 +21,7 @@
           - python3-pip
       when: ansible_facts['distribution'] == 'Ubuntu'
 
-    - name: Install Docker (Ubuntu)
+    - name: Install Docker for Ubuntu server
       include_role:
         name: installpkgubuntu
       vars:
@@ -35,26 +35,26 @@
         service: docker
       when: ansible_facts['distribution'] == 'Ubuntu'
 
-    - name: Stop UFW (Ubuntu)
+    - name: Stop ufw for the ubuntu server
       include_role:
         name: stopufw
       when: ansible_facts['distribution'] == 'Ubuntu'
 
-    - name: "Pip: Installing Docker Modules"
+    - name: "Pip: Installing Docker"
       include_role:
         name: installpip
       vars:
         pippackage: docker
 
-    - name: Add user to docker grup
+    - name: Add user to docker group
       include_role:
         name: dockergroup
         
-    - name: Add webserver
+    - name: webserver add
       include_role:
-        name: webserver
+        name: addwebserver
         
-- name: Containerization 5.1 (DBSERVER)
+- name: For dbserver
   hosts: all
   tags: dbserver
   tasks:
@@ -62,11 +62,11 @@
       include_vars:
         file: config.yml
    
-    - name: Stop UFW (Ubuntu)
+    - name: Stop ufw for the Ubuntu
       include_role:
         name: stopufw
       when: ansible_facts['distribution'] == 'Ubuntu'
        
-    - name: Add dbserver
+    - name: dbserver add
       include_role:
-        name: dbserver
+        name: adddbserver
